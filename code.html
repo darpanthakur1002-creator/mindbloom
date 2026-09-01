@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Health Report | Serene Growth</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #E5E7EB;
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        body {
+            overscroll-behavior-y: contain;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2d6a4f",
+                        "surface-container-high": "#e5e6ff",
+                        "outline-variant": "#bfc9c1",
+                        "background": "#fbf8ff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fbf8ff",
+                        "surface": "#fbf8ff",
+                        "inverse-surface": "#2b2f48",
+                        "primary-fixed-dim": "#95d4b3",
+                        "on-tertiary-container": "#dddbc8",
+                        "on-secondary-fixed": "#151d1a",
+                        "surface-tint": "#2c694e",
+                        "on-primary-fixed": "#002114",
+                        "surface-container-low": "#f4f2ff",
+                        "inverse-primary": "#95d4b3",
+                        "surface-container-highest": "#dee0ff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#a8e7c5",
+                        "secondary-fixed": "#dbe5df",
+                        "on-tertiary-fixed": "#1c1c11",
+                        "on-error": "#ffffff",
+                        "tertiary": "#49483b",
+                        "tertiary-fixed-dim": "#c9c7b5",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#0e5138",
+                        "primary-fixed": "#b1f0ce",
+                        "surface-container": "#ececff",
+                        "on-secondary-fixed-variant": "#3f4945",
+                        "surface-dim": "#d5d8f9",
+                        "on-surface-variant": "#404943",
+                        "on-background": "#161a32",
+                        "tertiary-fixed": "#e6e3d0",
+                        "outline": "#707973",
+                        "inverse-on-surface": "#f0efff",
+                        "on-tertiary-fixed-variant": "#48473a",
+                        "on-secondary-container": "#5b6560",
+                        "secondary-fixed-dim": "#bfc9c3",
+                        "on-surface": "#161a32",
+                        "primary": "#0f5238",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#d8e2dc",
+                        "secondary": "#57615c",
+                        "tertiary-container": "#616051",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#dee0ff",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "48px",
+                        "stack-md": "16px",
+                        "unit": "8px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 bg-surface shadow-sm flex items-center justify-between px-container-margin h-16">
+<button class="text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary">Health Report</h1>
+<button class="text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined">share</span>
+</button>
+</header>
+<main class="max-w-4xl mx-auto px-container-margin mt-stack-lg space-y-stack-lg">
+<!-- Summary Section: Brain Score -->
+<section class="flex flex-col items-center py-stack-lg bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant">
+<div class="relative flex items-center justify-center">
+<svg class="w-48 h-48">
+<circle class="text-secondary-container stroke-current" cx="96" cy="96" fill="transparent" r="80" stroke-width="12"></circle>
+<circle class="text-primary stroke-current progress-ring-circle" cx="96" cy="96" fill="transparent" r="80" stroke-linecap="round" stroke-width="12" style="stroke-dasharray: 502.6; stroke-dashoffset: 80;"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-display-lg text-display-lg text-primary">84</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">BRAIN SCORE</span>
+</div>
+</div>
+<div class="mt-stack-md flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-label-md text-label-md">Improving</span>
+</div>
+<p class="mt-stack-sm font-body-sm text-body-sm text-on-surface-variant text-center max-w-xs">
+                Your cognitive health has increased by 4% compared to last week.
+            </p>
+</section>
+<!-- Bento Grid Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Memory Performance Chart -->
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<h3 class="font-label-lg text-label-lg text-on-surface">Memory Performance</h3>
+</div>
+<span class="text-primary font-label-md">+2.4%</span>
+</div>
+<div class="h-32 flex items-end justify-between gap-1">
+<div class="bg-secondary-container w-full rounded-t-sm transition-all duration-500" style="height: 60%;"></div>
+<div class="bg-secondary-container w-full rounded-t-sm transition-all duration-500" style="height: 45%;"></div>
+<div class="bg-secondary-container w-full rounded-t-sm transition-all duration-500" style="height: 70%;"></div>
+<div class="bg-secondary-container w-full rounded-t-sm transition-all duration-500" style="height: 85%;"></div>
+<div class="bg-secondary-container w-full rounded-t-sm transition-all duration-500" style="height: 75%;"></div>
+<div class="bg-secondary-container w-full rounded-t-sm transition-all duration-500" style="height: 90%;"></div>
+<div class="bg-primary w-full rounded-t-sm transition-all duration-500" style="height: 95%;"></div>
+</div>
+<div class="flex justify-between text-[10px] text-outline uppercase font-bold tracking-widest">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<!-- Mood Trends -->
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sentiment_satisfied</span>
+<h3 class="font-label-lg text-label-lg text-on-surface">Mood Trends</h3>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-4 rounded-lg">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">mood</span>
+<span class="text-[10px] text-on-surface-variant font-bold mt-1">PRIMARY</span>
+</div>
+<div class="flex-1 px-4">
+<div class="h-2 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 78%"></div>
+</div>
+<p class="text-body-sm text-body-sm mt-2 font-medium">Mostly Serene (78%)</p>
+</div>
+</div>
+<p class="text-body-sm text-body-sm text-on-surface-variant italic">"Arthur's mood was significantly higher during social hours."</p>
+</div>
+<!-- Sleep Quality -->
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bedtime</span>
+<h3 class="font-label-lg text-label-lg text-on-surface">Sleep Quality</h3>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-md font-headline-md text-primary">7.8</span>
+<span class="text-on-surface-variant font-label-md">hours avg.</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-body-sm font-medium">
+<span>Deep Sleep</span>
+<span>2.4h</span>
+</div>
+<div class="h-2 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed-dim" style="width: 32%"></div>
+</div>
+</div>
+</div>
+<!-- Medication Adherence -->
+<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">pill</span>
+<h3 class="font-label-lg text-label-lg text-on-surface">Medication Adherence</h3>
+</div>
+<div class="bg-primary-container/10 p-4 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-primary">Perfect Week!</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant">100% adherence recorded.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Summary -->
+<section class="space-y-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Weekly Achievements</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant flex items-center gap-4">
+<div class="w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">extension</span>
+</div>
+<div>
+<p class="text-label-md text-label-md text-on-surface-variant uppercase font-bold tracking-wider">Games Completed</p>
+<p class="text-headline-md font-headline-md">12 Exercises</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant flex items-center gap-4">
+<div class="w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">military_tech</span>
+</div>
+<div>
+<p class="text-label-md text-label-md text-on-surface-variant uppercase font-bold tracking-wider">Badge Earned</p>
+<p class="text-headline-md font-headline-md">Focus Master</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Caregiver Notes -->
+<section class="bg-tertiary-fixed text-on-tertiary-fixed p-6 rounded-xl border border-on-tertiary-fixed/10 relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined">description</span>
+<h3 class="font-label-lg text-label-lg uppercase">Caregiver Insights</h3>
+</div>
+<p class="font-body-lg text-body-lg italic leading-relaxed">
+                    "Arthur had a very active social week, which positively impacted his mood. He was particularly engaged during the family call on Wednesday, showing high recall of recent events."
+                </p>
+<div class="mt-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
+<img class="w-full h-full object-cover" data-alt="A warm, professional portrait of a female nurse in her 40s, smiling gently at the camera. She is wearing a soft sage green healthcare uniform. The lighting is bright and natural, set in a clean, modern clinic with indoor plants in the background, conveying safety and compassionate care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCDtff3ZK-OTAHnxAvZAViqw6YWHo2jmAqSsXL_-iyuDW8VovO-fcd5CScBY7L5JRj6BlcKTbrP3_dP50iwkKtnGynxhKBZrrhOpzz-SsVRcFCwm3f6rj1yOoItfbYFqTSo7md0HpnNY0LRm1qjRh0-aU_g21poFhAVjW91uuaWVMy95R9mSAlYoVgUzWbvXFy5TV0rp4QngRfzcntWY4EaEIXmDVWQdHd89-jR9GmzUSGg6h26Ruq"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg">Nurse Elena</p>
+<p class="text-[10px] opacity-80 uppercase font-bold">Clinical Lead</p>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-5">format_quote</span>
+</section>
+<!-- AI Recommendations -->
+<section class="space-y-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Recommendations</h2>
+<div class="space-y-stack-sm">
+<div class="bg-white border border-outline-variant p-4 rounded-xl flex items-start gap-4 hover:shadow-md transition-shadow">
+<div class="w-10 h-10 bg-secondary-container text-primary rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Increase Focus Games</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Try 10 more minutes of Focus exercises next week to maintain your score.</p>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-4 rounded-xl flex items-start gap-4 hover:shadow-md transition-shadow">
+<div class="w-10 h-10 bg-secondary-container text-primary rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">wb_sunny</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Morning Light Exposure</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant">15 minutes of sunlight before 10 AM may help stabilize your sleep cycle further.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-surface border-t border-outline-variant z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container/50 transition-all rounded-lg p-1 px-3">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Today</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-1 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container/50 transition-all rounded-lg p-1 px-3">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-label-md text-label-md">Games</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container/50 transition-all rounded-lg p-1 px-3">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple animation for the progress ring
+        window.addEventListener('DOMContentLoaded', () => {
+            const circle = document.querySelector('.progress-ring-circle');
+            const radius = circle.r.baseVal.value;
+            const circumference = radius * 2 * Math.PI;
+            
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            
+            // Set for 84% score
+            const offset = circumference - (84 / 100 * circumference);
+            circle.style.strokeDashoffset = circumference; // Start empty
+            
+            setTimeout(() => {
+                circle.style.strokeDashoffset = offset; // Animate to fill
+            }, 300);
+        });
+    </script>
+</body></html>
